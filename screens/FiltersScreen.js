@@ -1,13 +1,34 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import CustomHeaderButton from "../components/HeaderButton";
+import DefaulText from "../components/DefaulText";
 
 const FiltersScreen = props => {
   return (
     <View style={styles.screen}>
-      <Text>FiltersScreen</Text>
+      <DefaulText>FiltersScreen</DefaulText>
     </View>
   );
 };
+
+FiltersScreen.navigationOptions = navData => {
+  return {
+    headerTitle: "Filter Meals",
+    headerLeft: () => (
+      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+        <Item
+          title="Menu"
+          iconName="ios-menu"
+          onPress={() => {
+            navData.navigation.toggleDrawer();
+          }}
+        />
+      </HeaderButtons>
+    )
+  };
+};
+
 const styles = StyleSheet.create({
   screen: {
     flex: 1,

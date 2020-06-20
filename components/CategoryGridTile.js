@@ -7,6 +7,7 @@ import {
   Platform,
   TouchableNativeFeedback
 } from "react-native";
+import DefaulText from "../components/DefaulText";
 
 const CategoryGridTile = props => {
   let TouchableCmp = TouchableOpacity;
@@ -20,9 +21,9 @@ const CategoryGridTile = props => {
         <View
           style={{ ...styles.conteiner, ...{ backgroundColor: props.color } }}
         >
-          <Text style={styles.title} numberOfLines={2}>
+          <DefaulText style={styles.title} numberOfLines={2}>
             {props.title}
-          </Text>
+          </DefaulText>
         </View>
       </TouchableCmp>
     </View>

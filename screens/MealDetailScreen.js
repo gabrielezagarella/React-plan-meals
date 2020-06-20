@@ -3,14 +3,15 @@ import { View, Text, StyleSheet, Button } from "react-native";
 import { MEALS } from "../data/dummy_data";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderButton from "../components/HeaderButton";
+import DefaulText from "../components/DefaulText";
 
 const MealDetailScreen = props => {
   const mealId = props.navigation.getParam("mealId");
   const selectedMeal = MEALS.find(meal => meal.id === mealId);
   return (
     <View style={styles.screen}>
-      <Text>MealDetailScreen</Text>
-      <Text>{selectedMeal.steps}</Text>
+      <DefaulText>MealDetailScreen</DefaulText>
+      <DefaulText>{selectedMeal.steps}</DefaulText>
       <Button
         title="Go Home"
         onPress={() => {

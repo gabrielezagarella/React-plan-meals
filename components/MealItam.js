@@ -8,6 +8,7 @@ import {
   TouchableNativeFeedback,
   ImageBackground
 } from "react-native";
+import DefaulText from "../components/DefaulText";
 
 const MealItem = props => {
   let TouchableCmp = TouchableOpacity;
@@ -22,16 +23,16 @@ const MealItem = props => {
           <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
             <ImageBackground source={{ uri: props.image }} style={styles.image}>
               <View style={styles.titleContainer}>
-                <Text style={styles.title} numberOfLines={1}>
+                <DefaulText style={styles.title} numberOfLines={1}>
                   {props.title}
-                </Text>
+                </DefaulText>
               </View>
             </ImageBackground>
           </View>
           <View style={{ ...styles.mealRow, ...styles.mealDetail }}>
-            <Text>{props.duration}</Text>
-            <Text>{props.complexity.toUpperCase()}</Text>
-            <Text>{props.affordability.toUpperCase()}</Text>
+            <DefaulText>{props.duration}</DefaulText>
+            <DefaulText>{props.complexity.toUpperCase()}</DefaulText>
+            <DefaulText>{props.affordability.toUpperCase()}</DefaulText>
           </View>
         </View>
       </TouchableCmp>

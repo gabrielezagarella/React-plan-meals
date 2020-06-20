@@ -32,12 +32,12 @@ const MealList = props => {
   );
 };
 const styles = StyleSheet.create({
-    screen: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-      margin: 20
-    }
-  });
+  screen: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 20
+  }
+});
 
 export default MealList;
