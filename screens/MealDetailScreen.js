@@ -1,15 +1,25 @@
 import React from "react";
 import { View, StyleSheet, ScrollView, Image } from "react-native";
-import { MEALS } from "../data/dummy_data";
+import { useSelector } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderButton from "../components/HeaderButton";
 import DefaulText from "../components/DefaulText";
 
+const ListItem = props => {
+  return (
+    <View style={styles.listItem}>
+      <DefaulText>{props.children}</DefaulText>
+    </View>
+  );
+};
 const MealDetailScreen = props => {
   const mealId = props.navigation.getParam("mealId");
-  const selectedMeal = MEALS.find(meal => meal.id === mealId);
+  const availableMeals = useSelector(state => state.meals.meals);
+  const selectedMeal = availableMeals.find(meal => meal.id === mealId);
+
   return (
     <ScrollView>
+      <DefaulText style={styles.title}>{selectedMeal.title}</DefaulText>
       <Image source={{ uri: selectedMeal.imageUrl }} style={styles.image} />
       <View style={styles.details}>
         <DefaulText>{selectedMeal.duration}m</DefaulText>
@@ -18,24 +28,23 @@ const MealDetailScreen = props => {
       </View>
       <DefaulText style={styles.title}>Ingredients</DefaulText>
       {selectedMeal.ingredients.map(ingredient => (
-        <View style={styles.listItem}>
-          <DefaulText key={ingredient}>{ingredient}</DefaulText>
-        </View>
+        <ListItem key={ingredient}>{ingredient}</ListItem>
       ))}
       <DefaulText style={styles.title}>Steps</DefaulText>
       {selectedMeal.steps.map(step => (
-        <View style={styles.listStep}>
-          <DefaulText key={step}>{step}</DefaulText>
-        </View>
+        <DefaulText style={styles.listStep} key={step}>
+          {step}
+        </DefaulText>
       ))}
     </ScrollView>
   );
 };
+
 MealDetailScreen.navigationOptions = navigationData => {
-  const mealId = navigationData.navigation.getParam("mealId");
-  const selectedMeal = MEALS.find(meal => meal.id === mealId);
+  const mealTitle = navigationData.navigation.getParam("mealTitle");
+
   return {
-    headerTitle: selectedMeal.title,
+    headerTitle: mealTitle,
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item title="Favorite" iconName="ios-star" onPress={() => {}} />
@@ -56,7 +65,8 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: "open-sans-bold",
     fontSize: 20,
-    textAlign: "center"
+    textAlign: "center",
+    margin: 8
   },
   listItem: {
     marginVertical: 10,
